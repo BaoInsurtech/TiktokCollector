@@ -1,0 +1,23 @@
+// database
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// generator
+generator client {
+  provider             = "prisma-client-py"
+  recursive_type_depth = 5
+  enable_experimental_decimal = true
+}
+
+// models
+model TiktokShopTokens {
+    id                      Int       @id @default(autoincrement())
+    access_token            String
+    access_token_expire_in  BigInt
+    refresh_token           String
+    refresh_token_expire_in BigInt
+    created_at               DateTime @default(now())
+    updated_at               DateTime @updatedAt
+}

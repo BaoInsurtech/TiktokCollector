@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.concurrency import asynccontextmanager
 import uvicorn
+import os
 from dotenv import load_dotenv
 
 from routes import auth_route
@@ -13,8 +14,8 @@ async def lifespan(app: FastAPI):
     await disconnect_db()
 
 load_dotenv()
+PORT = os.getenv("PORT", 8000)
 app = FastAPI(lifespan=lifespan)
-
 
 @app.get("/")
 def read_root():
@@ -22,4 +23,4 @@ def read_root():
 
 if __name__ == "__main__":
     auth_route.register_auth_routes(app)
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)

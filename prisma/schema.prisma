@@ -13,11 +13,22 @@ generator client {
 
 // models
 model TiktokShopTokens {
-    id                      Int       @id @default(autoincrement())
-    access_token            String
-    access_token_expire_in  BigInt
-    refresh_token           String
-    refresh_token_expire_in BigInt
-    created_at               DateTime @default(now())
-    updated_at               DateTime @updatedAt
+  customer_id             Int       @id @default(autoincrement())
+  access_token            String
+  access_token_expire_in  BigInt
+  refresh_token           String
+  refresh_token_expire_in BigInt
+
+  shops                   TiktokShopData[]
+}
+
+model TiktokShopData {
+  customer_id     Int
+  shop_id         String
+  shop_name       String
+  shop_code       String
+  shop_cipher     String
+
+  token           TiktokShopTokens   @relation(fields: [customer_id], references: [customer_id])
+  @@id([customer_id, shop_id])
 }

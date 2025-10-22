@@ -9,6 +9,7 @@ APP_KEY = os.getenv("APP_KEY", "")
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY", "")
 
 async def auth_callback_handler(app_key: str = None, code: str = None) -> APIResponse:
+    print(f"Auth callback received with app_key: {app_key}, code: {code}")
     if code == None:
         return APIResponse(code=400, message="Invalid parameters")
     try:

@@ -4,7 +4,7 @@ import uvicorn
 import os
 from dotenv import load_dotenv
 
-from routes import auth_route
+from routes import auth_route, shop_route
 from db.client import connect_db, disconnect_db
 
 @asynccontextmanager
@@ -21,6 +21,9 @@ app = FastAPI(lifespan=lifespan)
 def read_root():
     return {"message": "Hello, World!"}
 
+auth_route.register_auth_routes(app)
+shop_route.register_shop_routes(app)
+
 if __name__ == "__main__":
-    auth_route.register_auth_routes(app)
+    print(f"Starting server on port {PORT}...")
     uvicorn.run("main:app", host="0.0.0.0", port=PORT, reload=True)

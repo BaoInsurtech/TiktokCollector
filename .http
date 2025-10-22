@@ -1,0 +1,17 @@
+
+GET /shop/info
+Host: localhost:8000
+Content-Type: application/json
+
+###
+
+GET /
+Host: localhost:8000
+Content-Type: application/json
+
+
+###
+
+GET /shop
+Host: localhost:8000
+Content-Type: application/json

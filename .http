@@ -1,17 +1,18 @@
-
+### GET SHOP INFO
 GET /shop/info
 Host: localhost:8000
 Content-Type: application/json
 
-###
-
-GET /
+### GET SHOP ORDERS
+GET /shop/orders
 Host: localhost:8000
 Content-Type: application/json
 
+### GET SHOP AUTHORIZE
+GET /shop/author
+Host: localhost:8000
+Content-Type: application/json
 
-###
-
-GET /shop
+GET /
 Host: localhost:8000
 Content-Type: application/json

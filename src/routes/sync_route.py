@@ -15,7 +15,6 @@ if not logger.handlers:
 logger.setLevel(logging.INFO)
 logger.propagate = False
 
-
 @router.post("/trigger")
 async def trigger_sync(
     customer_id: str | None = Query(None, description="optional customer_id to sync only that one")

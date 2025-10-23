@@ -122,8 +122,6 @@ async def shop_orders_handler() -> APIResponse:
     data = response.json().get("data", {})
     return APIResponse(code=200, message="Success", data=data)
 
-
-
 def register_auth_routes(app):
     @router.get("/callback", tags=["auth"])
     async def callback(app_key: str = None, code: str = None):

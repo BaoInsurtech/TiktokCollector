@@ -1,11 +1,11 @@
 import time
 import requests
 import os
-from db.client import prisma
+from ..db.client import prisma
 
-from model.common_model import APIResponse
-from model.auth_model import AuthTokenResponse, ShopDataResponse
-from utils.sign import generate_sign
+from ..model.common_model import APIResponse
+from ..model.auth_model import AuthTokenResponse, ShopDataResponse
+from ..utils.sign import generate_sign
 
 APP_KEY = os.getenv("APP_KEY", "")
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY", "")

@@ -1,9 +1,8 @@
-import asyncio
 import logging
+from db.client import prisma
 from datetime import datetime
-from src.db.client import get_access_token_by_id, get_shop_cipher_by_customer_id
-from src.db.mongo_client import insert_document
-from src.services.tiktok_service import TIKTOK_API_ENDPOINTS, call_tiktok_api
+from db.mongo_client import insert_document
+from services.tiktok_service import TIKTOK_API_ENDPOINTS, call_tiktok_api
 
 logger = logging.getLogger(__name__)
 
@@ -15,9 +14,12 @@ async def sync_for_customer(prisma, customer_id=None):
     logger.info(f"🔄 Bắt đầu sync cho customer_id={customer_id}")
     
     try:
-        tokens = get_access_token_by_id(customer_id=customer_id)  # ✅ Bỏ await
-        shop_cipher = get_shop_cipher_by_customer_id(customer_id)  # Giả sử hàm này tồn tại
-
+        tokens = await prisma.tiktokshoptokens.find_many(
+            where={"customer_id": customer_id}
+        )
+        shop_cipher = await prisma.tiktokshops.find_unique(
+            where={"customer_id": customer_id}
+        )
 
         logger.info(f"✅ Tìm thấy {len(tokens)} token(s)")
     except Exception as e:

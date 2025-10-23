@@ -1,11 +1,7 @@
-import os 
-import asyncio
+import os
 import time
-import requests
-from typing import Optional, Dict, Any
 import httpx
-import urllib.parse
-from ..utils.sign import generate_sign
+from utils.sign import generate_sign
 
 TIKTOK_API_BASE = "https://open-api.tiktokglobalshop.com"
 APP_KEY = os.getenv("APP_KEY", "")

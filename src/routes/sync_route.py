@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Query
 import logging
 
-from ..db.client import prisma  # ✅ Chỉ import prisma, bỏ connect_db/disconnect_db
-from ..services.sync_service import sync_for_customer
+from db.client import prisma
+from services.sync_service import sync_for_customer
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/sync", tags=["sync"])
@@ -12,9 +12,7 @@ if not logger.handlers:
     _h = logging.StreamHandler()
     _h.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
     logger.addHandler(_h)
-# Đảm bảo luôn hiện INFO của file này
 logger.setLevel(logging.INFO)
-# Ngăn trùng log nếu root cũng xử lý
 logger.propagate = False
 
 

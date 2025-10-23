@@ -4,9 +4,9 @@ import uvicorn
 import os
 from dotenv import load_dotenv
 
-from .routes import auth_route
-from src.routes.sync_route import router as sync_route
-from src.db.client import connect_db, disconnect_db
+from routes import auth_route
+from routes.sync_route import router as sync_route
+from db.client import connect_db, disconnect_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):

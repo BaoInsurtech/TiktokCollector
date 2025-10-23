@@ -31,7 +31,6 @@ async def shop_authorize_handler(access_token: str) -> APIResponse:
     qs['sign'] = sign
     return requests.get(f"{base_url}{uri_path}", params=qs, headers=headers)
 
-
 async def auth_callback_handler(app_key: str = None, code: str = None) -> APIResponse:
     print(f"Auth callback received with app_key: {app_key}, code: {code}")
     if code == None:
@@ -45,13 +44,18 @@ async def auth_callback_handler(app_key: str = None, code: str = None) -> APIRes
         }
         response = requests.get("https://auth.tiktok-shops.com/api/v2/token/get", params=params)
         response.raise_for_status()
-        data: AuthTokenResponse = response.json().get("data", {})
-        await prisma.tiktokshoptokens.create(data=data.model_dump())
-        data = shop_authorize_handler(data.access_token)
-        data.raise_for_status()
-        data: ShopDataResponse = response.json().get("data", {})
+        data: AuthTokenResponse = response.json().get("data")
+        print(f"Received auth tokens: {response.json()}")
+        if (data is None):
+            return APIResponse(code=500, message=response.json().get("message", "Failed to get auth tokens"))
+        await prisma.tiktokshoptokens.create(data=data)
+        response = await shop_authorize_handler(data.access_token)
+        response.raise_for_status()
+        data: ShopDataResponse = response.json().get("data")
+        if (data is None):
+            return APIResponse(code=500, message=response.json().get("message", "Failed to get shop data"))
         print(f"Authorized shop data: {data}")
-        await prisma.tiktokshopdata.create(data=data.model_dump())
+        await prisma.tiktokshopdata.create(data=data)
     except Exception as e:
         print(f"Error in auth_callback_handler: {e}")
         return APIResponse(code=500, message="Internal server error")

@@ -24,3 +24,13 @@ Content-Type: application/json
 GET /auth/callback?app_key=6hc64lc67hmhk&code=ROW_uCYAeQAAAABNR7jrhaDi16ywPteFLGN6JCH8MoWyft45ezl62Zw8vK9Rs4191K9LoPAkBfFtEnFPLBvQmkvZ2XkuxrC1hlvMDA9ior0iTqoUA0Kskr8rZHh3_OnvmgZqQjP8-Eap3tVJVBkuZbthfVeowOunA00N53yGuOZ1om5t06ZbX3HGu32q5cmf7fARhyyB0SOH0MJClEhvqMOuzcomKqDLVutqSc8NwdNcuiiZ791iebcoGMHcykQhsJv1KouUYvt38FwbLtkO7pBzr5E6rmlca-54E0SGsSjwZls--1JFu1D7iAMIbrEiqayGFuBaME9Kh9HdH2PTQLfkZR7-1mCdo78pwaVkbX4w0dHhMJQaQCTKzlr17BJ4YFRt8dMnGd2azFglMdiQsLnLoPIWtQwgnmkdMh8Y8h8nZQY3_mg6eGuP_29DEU26Cvp5I9xU4peqcztCEpGuRZhBuKOnkdUWmE12HpHidwjDkcaXRPijTq3MNEVcVYd5rqZY30o4Cfbtbg2pK12OZaCzriv-Y2iok1g3pWQYXJBZzoHjG_YfwMLRUw&locale=vi-VN&shop_region=VN HTTP/1.1
 Host: localhost:8000
 Content-Type: application/json
+
+###
+GET /auth/refresh-token HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
+###
+GET /auth/test HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json

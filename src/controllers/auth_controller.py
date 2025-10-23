@@ -10,7 +10,7 @@ from utils.sign import generate_sign
 APP_KEY = os.getenv("APP_KEY", "")
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY", "")
 
-async def shop_authorize_handler(access_token: str) -> APIResponse:
+async def shop_authorize_handler(access_token: str):
     base_url = 'https://open-api.tiktokglobalshop.com'
     uri_path = '/authorization/202309/shops'
     timestamp = int(time.time())
@@ -65,7 +65,7 @@ async def refresh_token_handler():
     refresh_token = None
     try:
         tmp = await prisma.tiktokshoptokens.find_unique(
-            where={"id": 1}
+            where={"customer_id": 1}
         )
         refresh_token = tmp.refresh_token
     except Exception as e:
@@ -80,15 +80,19 @@ async def refresh_token_handler():
             "app_key": APP_KEY,
             "app_secret": APP_SECRET_KEY,
             "refresh_token": refresh_token,
-            "grant_type": "authorized_code"
+            "grant_type": "refresh_token"
         }
         response = requests.get("https://auth.tiktok-shops.com/api/v2/token/refresh", params=params)
         response.raise_for_status()
-        data: AuthTokenResponse = response.json().get("data", {})
-        await prisma.TiktokShopTokens.update({
-            "where": { "id": 1 },
-            "data": data.model_dump()
-        })
+        
+        print(f"Refreshed auth tokens: {response.json()}")
+        data = AuthTokenResponse(**(response.json().get("data")))
+        if (data is None):
+            return APIResponse(code=500, message=response.json().get("message", "Failed to refresh tokens"))
+        await prisma.tiktokshoptokens.update(
+            where={"customer_id": 1},
+            data=data.model_dump()
+        )
         return APIResponse(code=200, message="Authorization successful")
     except Exception as e:
         print(f"Error in auth_callback_handler: {e}")

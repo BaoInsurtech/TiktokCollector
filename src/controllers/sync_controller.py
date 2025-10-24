@@ -30,16 +30,16 @@ async def sync_trigger_handler() -> APIResponse:
         
 
         # Gọi API lấy danh sách đơn hàng
-        # res = await orders.get_order_list(access_token, shop_cipher, pageSize=pageSize)
-        # doc = {
-        #     "customer_id": 1,
-        #     "api_name": "orders_list",
-        #     "date_fetched": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        #     "code": res.get("code", 500),
-        #     "message": res.get("message", ""),
-        #     "data": res.get("data", {}),
-        # }
-        # await insert_document("tiktok_api_responses", doc)
+        res = await orders.get_order_list(access_token, shop_cipher, pageSize=pageSize)
+        doc = {
+            "customer_id": 1,
+            "api_name": "orders_list",
+            "date_fetched": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "code": res.get("code", 500),
+            "message": res.get("message", ""),
+            "data": res.get("data", {}),
+        }
+        await insert_document("tiktok_api_responses", doc)
 
         # I lấy danh sách quyền của người bán
         # res = await seller.get_seller_permisions(access_token, shop_cipher, pageSize=pageSize)
@@ -140,7 +140,7 @@ async def sync_response_handler(limit: int | None = 10,
         if customer_id is not None:
             query["customer_id"] = customer_id
 
-        cursor = collection.find(query).sort("fetched_at", -1).limit(limit)
+        cursor = collection.find(query).sort("date-fetched", -1).limit(limit)
         docs = await cursor.to_list(length=limit)  # ✅ Motor needs await
 
         for doc in docs:

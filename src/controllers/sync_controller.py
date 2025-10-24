@@ -105,21 +105,30 @@ async def sync_trigger_handler() -> APIResponse:
         #     "data": res.get("data", {}),
         # }
         # await insert_document("tiktok_api_responses", doc)
+
+        # API gọi lấy chi tiết giá của đơn hàng
+        res = await orders.get_price_detail(access_token,580453115811694573, shop_cipher)
+        print("Get price detail: ", res)
+        doc = {
+            "customer_id": 1,
+            "api_name": "orders_list",
+            "date_fetched": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "code": res.get("code", 500),
+            "message": res.get("message", ""),
+            "data": res.get("data", {}),
+        }
+        await insert_document("tiktok_api_responses", doc)
         
 
-
-        try:
-            body = res.json()
-        except Exception:
-            body = {"code": getattr(res, "status_code", 200), "message": getattr(res, "text", ""), "data": None}
-        code = int(body.get("code", 500))
-        message = body.get("message", "ok")
-        data = body.get("data")
+        
+        code = res.get("code", 500)
+        message = res.get("message", "")
+        data = res.get("data", {})
 
         return APIResponse(code=code, message=message, data=data)
 
     except Exception as e:
-        return APIResponse(code=200, message=str(e), data=None)
+        return APIResponse(code=code, message=message, data=data)
 
     finally:
         await prisma.disconnect()
@@ -140,7 +149,7 @@ async def sync_response_handler(limit: int | None = 10,
         if customer_id is not None:
             query["customer_id"] = customer_id
 
-        cursor = collection.find(query).sort("fetched_at", -1).limit(limit)
+        cursor = collection.find(query).sort("date_fetched", -1).limit(limit)
         docs = await cursor.to_list(length=limit)  # ✅ Motor needs await
 
         for doc in docs:

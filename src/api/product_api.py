@@ -117,6 +117,7 @@ async def get_brands(access_token: str,
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         resp = await client.get(url, headers=headers, params=qs)
+        print ("Response received: ", resp) 
         
         # ✅ Parse JSON từ httpx.Response
         try:

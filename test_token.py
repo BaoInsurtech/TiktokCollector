@@ -1,51 +1,32 @@
-import asyncio
-import sys
-import os
+from src.db.client import prisma, mongo
+from src.model.common_model import APIResponse
 
-# Add project root to path
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+async def sync_trigger_handler() -> APIResponse:
+    # Lấy dữ liệu token và shop cipher từ Prisma (mysql)
+    await prisma.connect()
 
-from src.db.client import connect_db, disconnect_db, get_access_token_by_id
-
-async def test_get_token():
-    """Test lấy token với customer_id=1"""
-    print("=" * 60)
-    print("🧪 Testing get_access_token_by_id(customer_id=1)")
-    print("=" * 60)
-    
     try:
-        # Connect database
-        await connect_db()
-        print("✅ Connected to database\n")
-        
-        # Test với customer_id=1
-        print("📝 Fetching token for customer_id=1...")
-        tokens = get_access_token_by_id(customer_id=1)  # ✅ Bỏ await vì function giờ là sync
-        
-        print(f"\n📊 Results:")
-        print(f"   Found: {len(tokens)} token(s)")
-        
-        if tokens:
-            token = tokens[0]
-            print(f"\n✅ Token data:")
-            print(f"   customer_id: {token.get('customer_id')}")
-            print(f"   access_token: {token.get('access_token', 'N/A')[:30]}...")
-            print(f"   refresh_token: {token.get('refresh_token', 'N/A')[:30]}...")
-            print(f"   access_token_expire_in: {token.get('access_token_expire_in')}")
-            print(f"   refresh_token_expire_in: {token.get('refresh_token_expire_in')}")
-        else:
-            print("\n⚠️ No token found for customer_id=1")
-        
+        tmp = await prisma.tiktokshoptokens.find_unique(
+            where={"customer_id": 1}
+        )
+        access_token = tmp.access_token
+
+        shop = await prisma.tiktokshopdata.find_first(
+            where={"customer_id": 1}
+        )
+        shop_cipher = shop.shop_cipher
+
+        print("Tokens from Prisma:", access_token)
+        print("Shop Cipher from Prisma:", shop_cipher)
+
     except Exception as e:
-        print(f"\n❌ Test failed: {e}")
-        import traceback
-        traceback.print_exc()
+        print("Error fetching data from Prisma:", str(e))
+        return APIResponse(success=False, 
+                           message="Failed to fetch data from Prisma",
+                           code=500)
     finally:
-        # Disconnect
-        await disconnect_db()
-        print("\n✅ Disconnected from database")
-    
-    print("=" * 60)
+        await prisma.disconnect()
 
 if __name__ == "__main__":
-    asyncio.run(test_get_token())
+    import asyncio
+    asyncio.run(sync_trigger_handler())

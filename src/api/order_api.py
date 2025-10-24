@@ -79,21 +79,21 @@ async def get_order_list(access_token: str,
         }
     
 
-async def get_order_list(access_token: str,
+async def get_price_detail(access_token: str,
+                           order_id: int,
                          shop_cipher: str,
-                         pageSize: int | None = 20,
                          body: dict | None = None,
                          params: dict | None = None):
     """
     Gọi API lấy danh sách đơn hàng từ TikTok Shop
     """
-    api_path = "/order/202309/orders/search"
+    api_path = f"/order/202407/orders/{order_id}/price_detail"
     timestamp = int(time.time())
     qs = {
         "app_key": APP_KEY,
         "timestamp": str(timestamp),
         "shop_cipher": shop_cipher or "",
-        "page_size": str(pageSize),
+        # "page_size": str(pageSize),
     }
     if params:
         qs.update(params)
@@ -117,7 +117,8 @@ async def get_order_list(access_token: str,
     qs["sign"] = sign
 
     async with httpx.AsyncClient(timeout=30.0) as client:
-        resp = await client.post(url, headers=headers, params=qs, json=body)
+        resp = await client.get(url, headers=headers, params=qs)
+        print(f"URL requested: {resp.request.url}")
         
         # ✅ Parse JSON từ httpx.Response
         try:
@@ -134,7 +135,6 @@ async def get_order_list(access_token: str,
         message = body.get("message", "")
         data = body.get("data")
         
-        print(f"✅ Response code: {code}, message: {message}")
         
         return {
             "code": code,

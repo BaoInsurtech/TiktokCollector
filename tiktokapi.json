@@ -1,0 +1,1157 @@
+[
+  {
+    "category": "Authorization",
+    "name": "Get Authorized Category Assets",
+    "document_path": "get-authorized-category-assets-202405"
+  },
+  {
+    "category": "Authorization",
+    "name": "Get Authorized Shops",
+    "document_path": "get-authorized-shops-202309"
+  },
+  {
+    "category": "Event",
+    "name": "Get Shop Webhooks",
+    "document_path": "get-shop-webhooks-202309"
+  },
+  {
+    "category": "Event",
+    "name": "Update Shop Webhook",
+    "document_path": "update-shop-webhook-202309"
+  },
+  {
+    "category": "Event",
+    "name": "Delete Shop Webhook",
+    "document_path": "delete-shop-webhook-202309"
+  },
+  {
+    "category": "Seller",
+    "name": "Seller API overview",
+    "document_path": "seller-api-overview"
+  },
+  {
+    "category": "Seller",
+    "name": "Get Active Shops",
+    "document_path": "get-active-shops-202309"
+  },
+  {
+    "category": "Seller",
+    "name": "Get Seller Permissions",
+    "document_path": "get-seller-permissions-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Products API overview",
+    "document_path": "products-api-overview"
+  },
+  {
+    "category": "Products",
+    "name": "Listing quality diagnosis",
+    "document_path": "listing-quality-diagnosis"
+  },
+  {
+    "category": "Products",
+    "name": "Product pricing",
+    "document_path": "product-pricing"
+  },
+  {
+    "category": "Products",
+    "name": "Common mistakes",
+    "document_path": "common-mistakes"
+  },
+  {
+    "category": "Products",
+    "name": "Check Listing Prerequisites",
+    "document_path": "check-listing-prerequisites-202312"
+  },
+  {
+    "category": "Products",
+    "name": "Get Categories",
+    "document_path": "get-categories-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Recommend Category",
+    "document_path": "recommend-category-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Category Rules",
+    "document_path": "get-category-rules-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Attributes",
+    "document_path": "get-attributes-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Brands",
+    "document_path": "get-brands-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Create Custom Brands",
+    "document_path": "create-custom-brands-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Check Product Listing",
+    "document_path": "check-product-listing-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Upload Product Image",
+    "document_path": "upload-product-image-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Upload Product File",
+    "document_path": "upload-product-file-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Search Size Charts",
+    "document_path": "search-size-charts-202407"
+  },
+  {
+    "category": "Products",
+    "name": "Create Product",
+    "document_path": "create-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Activate Product",
+    "document_path": "activate-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Deactivate Products",
+    "document_path": "deactivate-products-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Delete Products",
+    "document_path": "delete-products-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Recover Products",
+    "document_path": "recover-products-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Product",
+    "document_path": "get-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Search Products",
+    "document_path": "search-products-202502"
+  },
+  {
+    "category": "Products",
+    "name": "Update Price",
+    "document_path": "update-price-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Update Inventory",
+    "document_path": "update-inventory-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Inventory Search",
+    "document_path": "inventory-search-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Diagnose and Optimize Product",
+    "document_path": "diagnose-and-optimize-product-202411"
+  },
+  {
+    "category": "Products",
+    "name": "Product Information Issue Diagnosis",
+    "document_path": "product-information-issue-diagnosis-202405"
+  },
+  {
+    "category": "Products",
+    "name": "Get Products SEO Words",
+    "document_path": "get-products-seo-words-202405"
+  },
+  {
+    "category": "Products",
+    "name": "Get Recommended Product Title And Description",
+    "document_path": "get-recommended-product-title-and-description-202405"
+  },
+  {
+    "category": "Products",
+    "name": "Optimized Images",
+    "document_path": "optimized-images-202404"
+  },
+  {
+    "category": "Products",
+    "name": "Create Image Translation Tasks",
+    "document_path": "create-image-translation-tasks-202505"
+  },
+  {
+    "category": "Products",
+    "name": "Get Image Translation Tasks",
+    "document_path": "get-image-translation-tasks-202506"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Categories",
+    "document_path": "get-global-categories-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Recommend Global Categories",
+    "document_path": "recommend-global-categories-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Category Rules",
+    "document_path": "get-global-category-rules-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Attributes",
+    "document_path": "get-global-attributes-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Create Global Product",
+    "document_path": "create-global-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Publish Global Product",
+    "document_path": "publish-global-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Edit Global Product",
+    "document_path": "edit-global-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Delete Global Products",
+    "document_path": "delete-global-products-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Product",
+    "document_path": "get-global-product-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Search Global Products",
+    "document_path": "search-global-products-202312"
+  },
+  {
+    "category": "Products",
+    "name": "Update Global Inventory",
+    "document_path": "update-global-inventory-202309"
+  },
+  {
+    "category": "Products",
+    "name": "Create Manufacturer",
+    "document_path": "create-manufacturer-202409"
+  },
+  {
+    "category": "Products",
+    "name": "Partial Edit Manufacturer",
+    "document_path": "partial-edit-manufacturer-202409"
+  },
+  {
+    "category": "Products",
+    "name": "Search Manufacturers",
+    "document_path": "search-manufacturers-202501"
+  },
+  {
+    "category": "Products",
+    "name": "Create Responsible Person",
+    "document_path": "create-responsible-person-202409"
+  },
+  {
+    "category": "Products",
+    "name": "Partial Edit Responsible Person",
+    "document_path": "partial-edit-responsible-person-202409"
+  },
+  {
+    "category": "Products",
+    "name": "Search Responsible Persons",
+    "document_path": "search-responsible-persons-202501"
+  },
+  {
+    "category": "Products",
+    "name": "Create Category Upgrade Task",
+    "document_path": "create-category-upgrade-task-202407"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Listing Rules",
+    "document_path": "get-global-listing-rules-202507"
+  },
+  {
+    "category": "Products",
+    "name": "Replicate Product",
+    "document_path": "replicate-product-202507"
+  },
+  {
+    "category": "Products",
+    "name": "Get Global Replicated Products ",
+    "document_path": "get-global-replicated-products-202507"
+  },
+  {
+    "category": "Products",
+    "name": "Edit Product",
+    "document_path": "edit-product-202509"
+  },
+  {
+    "category": "Products",
+    "name": "Partial Edit Product",
+    "document_path": "partial-edit-product-202509"
+  },
+  {
+    "category": "Promotion",
+    "name": "Promotion API overview",
+    "document_path": "promotion-api-overview"
+  },
+  {
+    "category": "Promotion",
+    "name": "Shipping discount supported areas",
+    "document_path": "shipping-discount-supported-areas"
+  },
+  {
+    "category": "Promotion",
+    "name": "Create Activity",
+    "document_path": "create-activity-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Update Activity",
+    "document_path": "update-activity-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Deactivate Activity",
+    "document_path": "deactivate-activity-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Get Activity",
+    "document_path": "get-activity-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Search Activities",
+    "document_path": "search-activities-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Update Activity Product",
+    "document_path": "update-activity-product-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Remove Activity Product",
+    "document_path": "remove-activity-product-202309"
+  },
+  {
+    "category": "Promotion",
+    "name": "Get Coupon ",
+    "document_path": "get-coupon-202406"
+  },
+  {
+    "category": "Promotion",
+    "name": "Search Coupons",
+    "document_path": "search-coupons-202406"
+  },
+  {
+    "category": "Orders",
+    "name": "Order API overview",
+    "document_path": "order-api-overview"
+  },
+  {
+    "category": "Orders",
+    "name": "Get Order List",
+    "document_path": "get-order-list-202309"
+  },
+  {
+    "category": "Orders",
+    "name": "Get Price Detail",
+    "document_path": "get-price-detail-202407"
+  },
+  {
+    "category": "Orders",
+    "name": "Add External Order References",
+    "document_path": "add-external-order-references-202406"
+  },
+  {
+    "category": "Orders",
+    "name": "Get External Order References",
+    "document_path": "get-external-order-references-202406"
+  },
+  {
+    "category": "Orders",
+    "name": "Search Order By External Order Reference",
+    "document_path": "search-order-by-external-order-reference-202406"
+  },
+  {
+    "category": "Orders",
+    "name": "Get Order Detail",
+    "document_path": "get-order-detail-202507"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Fulfillment API overview",
+    "document_path": "fulfillment-api-overview"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "TikTok shipping",
+    "document_path": "zprki7tr"
+  },
+  {
+    "category": "TikTok shipping",
+    "name": "UK & EU: Purchase shipping labels from TikTok",
+    "document_path": "i83mvdfg"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Order Split Attributes",
+    "document_path": "get-order-split-attributes-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Split Orders",
+    "document_path": "split-orders-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Eligible Shipping Service",
+    "document_path": "get-eligible-shipping-service-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Create First Mile Bundle",
+    "document_path": "create-first-mile-bundle-202407"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Create Packages",
+    "document_path": "create-packages-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Search Package",
+    "document_path": "search-package-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Search Combinable Packages",
+    "document_path": "search-combinable-packages-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Combine Package",
+    "document_path": "combine-package-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Uncombine Packages",
+    "document_path": "uncombine-packages-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Package Handover Time Slots",
+    "document_path": "get-package-handover-time-slots-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Ship Package",
+    "document_path": "ship-package-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Batch Ship Packages",
+    "document_path": "batch-ship-packages-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Mark Package As Shipped",
+    "document_path": "mark-package-as-shipped-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Package Shipping Document",
+    "document_path": "get-package-shipping-document-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Package Detail",
+    "document_path": "get-package-detail-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Get Tracking",
+    "document_path": "get-tracking-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Update Shipping Info",
+    "document_path": "update-shipping-info-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Update Package Shipping Info",
+    "document_path": "update-package-shipping-info-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Fulfillment Upload Delivery File",
+    "document_path": "fulfillment-upload-delivery-file-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Fulfillment Upload Delivery Image",
+    "document_path": "fulfillment-upload-delivery-image-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Update Package Delivery Status",
+    "document_path": "update-package-delivery-status-202309"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "Upload Invoice",
+    "document_path": "upload-invoice-202502"
+  },
+  {
+    "category": "Fulfillment",
+    "name": "TTS Tracking Validation ",
+    "document_path": "tts-tracking-validation-202508"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Get FBT Merchant Onboarded Regions",
+    "document_path": "get-fbt-merchant-onboarded-regions-202409"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Get FBT Warehouse List ",
+    "document_path": "get-fbt-warehouse-list-202408"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Get Inbound Order",
+    "document_path": "get-inbound-order-202409"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Search FBT Inventory",
+    "document_path": "search-fbt-inventory-202408"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Search FBT Inventory Record",
+    "document_path": "search-fbt-inventory-record-202410"
+  },
+  {
+    "category": "Fulfilled by TikTok (FBT)",
+    "name": "Search Goods Info",
+    "document_path": "search-goods-info-202409"
+  },
+  {
+    "category": "Logistics",
+    "name": "Logistic API overview",
+    "document_path": "logistic-api-overview"
+  },
+  {
+    "category": "Logistics",
+    "name": "Get Warehouse List",
+    "document_path": "get-warehouse-list-202309"
+  },
+  {
+    "category": "Logistics",
+    "name": "Get Global Seller Warehouse",
+    "document_path": "get-global-seller-warehouse-202309"
+  },
+  {
+    "category": "Logistics",
+    "name": "Get Warehouse Delivery Options",
+    "document_path": "get-warehouse-delivery-options-202309"
+  },
+  {
+    "category": "Logistics",
+    "name": "Get Shipping Providers",
+    "document_path": "get-shipping-providers-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Return, refund, and cancel API overview",
+    "document_path": "return-refund-and-cancel-api-overview"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Return reasons",
+    "document_path": "return-reasons"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Refund reasons",
+    "document_path": "refund-reasons"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Cancel reasons",
+    "document_path": "cancel-reasons"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Get Aftersale Eligibility",
+    "document_path": "get-aftersale-eligibility-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Get Reject Reasons",
+    "document_path": "get-reject-reasons-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Create Return",
+    "document_path": "create-return-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Approve Return",
+    "document_path": "approve-return-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Reject Return",
+    "document_path": "reject-return-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Search Returns",
+    "document_path": "search-returns-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Get Return Records",
+    "document_path": "get-return-records-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Cancel Order",
+    "document_path": "cancel-order-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Approve Cancellation",
+    "document_path": "approve-cancellation-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Reject Cancellation",
+    "document_path": "reject-cancellation-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Search Cancellations",
+    "document_path": "search-cancellations-202309"
+  },
+  {
+    "category": "Return and refund",
+    "name": "Calculate Refund",
+    "document_path": "calculate-refund-202309"
+  },
+  {
+    "category": "Finance",
+    "name": "Finance API overview",
+    "document_path": "finance-api-overview"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Statements",
+    "document_path": "get-statements-202309"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Payments",
+    "document_path": "get-payments-202309"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Withdrawals",
+    "document_path": "get-withdrawals-202309"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Transactions by Order",
+    "document_path": "get-transactions-by-order-202501"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Transactions by Statement",
+    "document_path": "get-transactions-by-statement-202501"
+  },
+  {
+    "category": "Finance",
+    "name": "Get Unsettled Transactions",
+    "document_path": "get-unsettled-transactions-202507"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Performance",
+    "document_path": "get-shop-performance-202405"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Product Performance List",
+    "document_path": "get-shop-product-performance-list-202405"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Product Performance",
+    "document_path": "get-shop-product-performance-202405"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop SKU Performance List",
+    "document_path": "get-shop-sku-performance-list-202406"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop SKU Performance",
+    "document_path": "get-shop-sku-performance-202406"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Video Performance Overview",
+    "document_path": "get-shop-video-performance-overview-202409"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Video Performance List",
+    "document_path": "get-shop-video-performance-list-202409"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Video Performance Details",
+    "document_path": "get-shop-video-performance-details-202409"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop Video Product Performance List",
+    "document_path": "get-shop-video-product-performance-list-202409"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop LIVE Performance Overview",
+    "document_path": "get-shop-live-performance-overview-202508"
+  },
+  {
+    "category": "Analytics",
+    "name": "Get Shop LIVE Performance List",
+    "document_path": "get-shop-live-performance-list-202508"
+  },
+  {
+    "category": "Customer service",
+    "name": "Customer Service API overview",
+    "document_path": "customer-service-api-overview"
+  },
+  {
+    "category": "Customer service",
+    "name": "Create Conversation",
+    "document_path": "create-conversation-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Get Conversations",
+    "document_path": "get-conversations-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Get Conversation Messages",
+    "document_path": "get-conversation-messages-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Upload Buyer Messages Image",
+    "document_path": "upload-buyer-messages-image-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Send Message",
+    "document_path": "send-message-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Read Message",
+    "document_path": "read-message-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Get Agent Settings",
+    "document_path": "get-agent-settings-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Update Agent Settings ",
+    "document_path": "update-agent-settings-202309"
+  },
+  {
+    "category": "Customer service",
+    "name": "Get Customer Service Performance",
+    "document_path": "get-customer-service-performance-202407"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Customer engagement API overview",
+    "document_path": "customer-engagement-api-overview"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Get Message Templates",
+    "document_path": "get-message-templates-202412"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Create Engagement Task",
+    "document_path": "create-engagement-task-202412"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Send Engagement Message",
+    "document_path": "send-engagement-message-202412"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Get Task Performances",
+    "document_path": "get-task-performances-202412"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Create Custom Engagement Task",
+    "document_path": "create-custom-engagement-task-202502"
+  },
+  {
+    "category": "Customer engagement",
+    "name": "Get Feature Permissions",
+    "document_path": "get-feature-permissions-202502"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Affiliate Creator API overview",
+    "document_path": "affiliate-creator-api-overview"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Add Showcase Products",
+    "document_path": "add-showcase-products-202405"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Get Showcase Products",
+    "document_path": "get-showcase-products-202405"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Creator Search Open Collaboration Product",
+    "document_path": "creator-search-open-collaboration-product-202405"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Search Creator Target Collaborations",
+    "document_path": "search-creator-target-collaborations-202405"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Remove Showcase Products",
+    "document_path": "remove-showcase-products-202409"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Top Showcase Products",
+    "document_path": "top-showcase-products-202409"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Creator Search Sample Application Fulfillments",
+    "document_path": "creator-search-sample-application-fulfillments-202409"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Search Creator Affiliate Orders",
+    "document_path": "search-creator-affiliate-orders-202410"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Get Creator Sample Application Detail ",
+    "document_path": "get-creator-sample-application-detail-202412"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Get Creator Applicable Sample Label",
+    "document_path": "get-creator-applicable-sample-label-202412"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Search Creator Sample Applications",
+    "document_path": "search-creator-sample-applications-202412"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Creator Generate General Link",
+    "document_path": "creator-generate-general-link-202505"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Creator Generate Publisher Link",
+    "document_path": "creator-generate-publisher-link-202504"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Creator Search Affiliate Trace Orders",
+    "document_path": "creator-search-affiliate-trace-orders-202505"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Get Creator Profile",
+    "document_path": "get-creator-profile-202508"
+  },
+  {
+    "category": "Affiliate creator",
+    "name": "Get Open Collaboration Product List By Product Ids",
+    "document_path": "get-open-collaboration-product-list-by-product-ids-202509"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Affiliate Partner API overview",
+    "document_path": "affiliate-partner-api-overview"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Create Affiliate Partner Campaign",
+    "document_path": "create-affiliate-partner-campaign-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Edit Affiliate Partner Campaign",
+    "document_path": "edit-affiliate-partner-campaign-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Publish Affiliate Partner Campaign",
+    "document_path": "publish-affiliate-partner-campaign-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Review Affiliate Partner Campaign Product",
+    "document_path": "review-affiliate-partner-campaign-product-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Generate Affiliate Partner Campaign Product Link",
+    "document_path": "generate-affiliate-partner-campaign-product-link-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Partner Campaign Detail",
+    "document_path": "get-affiliate-partner-campaign-detail-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Partner Campaign List",
+    "document_path": "get-affiliate-partner-campaign-list-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Partner Campaign Product List",
+    "document_path": "get-affiliate-partner-campaign-product-list-202405"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Search Tap Affiliate Orders",
+    "document_path": "search-tap-affiliate-orders-202411"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Campaign Creator Fulfillment Status List",
+    "document_path": "get-affiliate-campaign-creator-fulfillment-status-list-202501"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Partner Generate Multi Affiliate Campaign Product Link",
+    "document_path": "partner-generate-multi-affiliate-campaign-product-link-202505"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Campaign Creator Fulfillment Status Info",
+    "document_path": "get-affiliate-campaign-creator-fulfillment-status-info-202508"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Campaign Creator Product Content Statistics",
+    "document_path": "get-affiliate-campaign-creator-product-content-statistics-202508"
+  },
+  {
+    "category": "Affiliate partner",
+    "name": "Get Affiliate Campaign Creator Product Sample Status",
+    "document_path": "get-affiliate-campaign-creator-product-sample-status-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Affiliate Seller API overview",
+    "document_path": "affiliate-seller-api-overview"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Edit Open Collaboration Settings",
+    "document_path": "edit-open-collaboration-settings-202405"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Generate Affiliate Product Promotion Link",
+    "document_path": "generate-affiliate-product-promotion-link-202405"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Seller Search Affiliate Open Collaboration Product",
+    "document_path": "seller-search-affiliate-open-collaboration-product-202405"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Search Seller Affiliate Orders",
+    "document_path": "search-seller-affiliate-orders-202410"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Seller Search Sample Applications Fulfillments",
+    "document_path": "seller-search-sample-applications-fulfillments-202409"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Open Collaboration Sample Rules",
+    "document_path": "get-open-collaboration-sample-rules-202410"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Edit Open Collaboration Sample Rule",
+    "document_path": "edit-open-collaboration-sample-rule-202410"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Remove Target Collaboration",
+    "document_path": "remove-target-collaboration-202409"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Open Collaboration Settings",
+    "document_path": "get-open-collaboration-settings-202409"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Search Open Collaboration",
+    "document_path": "search-open-collaboration-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Create Open Collaboration",
+    "document_path": "create-open-collaboration-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Message in the Conversation",
+    "document_path": "get-message-in-the-conversation-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Conversation List",
+    "document_path": "get-conversation-list-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Send IM Message",
+    "document_path": "send-im-message-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Mark Conversation Read",
+    "document_path": "mark-conversation-read-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Latest Unread Messages",
+    "document_path": "get-latest-unread-messages-202412"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Seller Review Sample Applications",
+    "document_path": "seller-review-sample-applications-202507"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Seller Search Creator on Marketplace",
+    "document_path": "seller-search-creator-on-marketplace-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Marketplace Creator Performance",
+    "document_path": "get-marketplace-creator-performance-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Create Target Collaboration",
+    "document_path": "create-target-collaboration-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Search Target Collaborations",
+    "document_path": "search-target-collaborations-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Remove Creator From Open Collaboration",
+    "document_path": "remove-creator-from-open-collaboration-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Update Target Collaboration",
+    "document_path": "update-target-collaboration-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Query Target Collaboration Detail",
+    "document_path": "query-target-collaboration-detail-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Create Conversation with creator",
+    "document_path": "create-conversation-with-creator-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Seller Search Sample Applications",
+    "document_path": "seller-search-sample-applications-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Get Open Collaboration Creator Content Detail",
+    "document_path": "get-open-collaboration-creator-content-detail-202508"
+  },
+  {
+    "category": "Affiliate seller",
+    "name": "Generate Target Collaboration Link",
+    "document_path": "generate-target-collaboration-link-202509"
+  },
+  {
+    "category": "Supply chain",
+    "name": "Confirm Package Shipment ",
+    "document_path": "confirm-package-shipment-202309"
+  }
+]

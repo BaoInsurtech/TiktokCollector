@@ -1,0 +1,821 @@
+[
+  {
+    "title": "Get Authorized Category Assets",
+    "description": "Retrieves the list of business category assets authorized by a partner for an app.\nPartner authorization is required before an app can access the data of a partner, and this access is granted based on business categories. Use this API to check which business category assets are currently authorized for an app and obtain the corresponding category asset cipher for use as an input parameter in affiliate partner related APIs. \nFor more information about partner authorization, refer to [Partner authorization guide](678e3a3978f4c20311b8b555).\nTarget partner: All",
+    "method": "GET",
+    "endpoint": "/authorization/202405/category_assets",
+    "use_case": "Retrieves authorized business category assets for an app."
+  },
+  {
+    "title": "Get Authorized Shops",
+    "description": "Retrieves the list of shops that a seller has authorized for an app.\nSeller authorization is required before an app can access the data of a shop. Use this API to check which shops are currently authorized for an app and obtain the corresponding shop cipher for use as an input parameter in shop related APIs. \nFor more information about seller authorization, refer to [Seller authorization guide](https://partner.tiktokshop.com/docv2/page/678e3a344ddec3030b238fa0).\nTarget seller: All",
+    "method": "GET",
+    "endpoint": "/authorization/202309/shops",
+    "use_case": "Retrieves authorized shops for an app."
+  },
+  {
+    "title": "Get Shop Webhooks",
+    "description": "Retrieves a shop's webhooks and the corresponding webhook URLs.",
+    "method": "GET",
+    "endpoint": "/event/202309/webhooks",
+    "use_case": "Retrieves a shop's configured webhooks and their URLs."
+  },
+  {
+    "title": "Get Active Shops",
+    "description": "Retrieves all active shops that belong to a seller. \nYou can use this API to check the activation status of shops.\nTarget seller: All",
+    "method": "GET",
+    "endpoint": "/seller/202309/shops",
+    "use_case": "Retrieves a seller's active shops and their activation status."
+  },
+  {
+    "title": "Get Seller Permissions",
+    "description": "Retrieves the cross-border operations that a cross-border seller is permitted to perform.\nYou can use this API prior to listing products to check whether a seller has the ability to list global products.\nTarget seller: Cross-border sellers",
+    "method": "GET",
+    "endpoint": "/seller/202309/permissions",
+    "use_case": "Retrieves a cross-border seller's operational permissions."
+  },
+  {
+    "title": "Check Listing Prerequisites",
+    "description": "Check if a TikTok shop is ready to list products.\nEach shop needs to satisfy a series of TikTok Shop requirements before you can start listing products. Before you proceed to list products, use this API to check if your shop has satisfied all requirements.\n**Tip**: We recommend that you run this check before any bulk updates to avoid listing issues. For example, sellers may change the delivery option to \"Shipped by seller\" but fail to add a shipping template, thus blocking the shop from listing products. In this case, the API would return `is_failed=true` for the `SHIPPING_TEMPLATE` check item and you can prompt the seller to fix the problem.",
+    "method": "GET",
+    "endpoint": "/product/202312/prerequisites",
+    "use_case": "Check if a TikTok shop satisfies all requirements for listing products."
+  },
+  {
+    "title": "Get Categories",
+    "description": "Retrieve the list of product categories available for your shop.\nProduct categories are updated frequently, so it's recommended to call the API in real time to ensure you are using the latest category data. Caching category data locally may result in using outdated information, leading to errors when creating products.\n**For the Indonesia market**: To list a product on both TikTok Shop and Tokopedia, you must use only categories that are available on both platforms. Please call this API twice to identify the overlapping categories.",
+    "method": "GET",
+    "endpoint": "/product/202309/categories",
+    "use_case": "Retrieve the list of product categories available for a shop."
+  },
+  {
+    "title": "Recommend Category",
+    "description": "Retrieve the recommended category for a candidate product based on its title, description, and images.\nIf you are syncing product catalogs from an external system to TikTok Shop, use this API to facilitate product categorization.\n**Note**: The language used in text fields such as descriptions and titles must align with the target market's language (e.g. don't use Chinese).",
+    "method": "POST",
+    "endpoint": "/product/202309/categories/recommend",
+    "use_case": "Retrieve a recommended product category based on product details."
+  },
+  {
+    "title": "Get Category Rules",
+    "description": "Retrieve the additional requirements (beyond mandatory product attributes) for listing a product in a particular category based on your shop's location. Requirements may include product certifications, size charts, dimensions and more.\nUse this API to determine the supporting information that you must prepare before listing a product.\n**Note**: It must be a [leaf category](6509c89d0fcef602bf1acd9b) that corresponds to the category tree type specified in the `category_version` property.",
+    "method": "GET",
+    "endpoint": "/product/202309/categories/{category_id}/rules",
+    "use_case": "Retrieve additional requirements for listing products in a specific category."
+  },
+  {
+    "title": "Get Attributes",
+    "description": "Retrieve the standard built-in product and sales attributes for listing a product in a particular category based on your shop's location.\nProducts on TikTok Shop are grouped into categories predefined by TikTok Shop, and each category is associated with a standard set of product attributes and sales attributes.\n- **Sales attributes** (e.g. size, color, length) define product variants and are optional if your product is straightforward and has no variants.\n- **Product attributes** (e.g. manufacturer, country of origin, materials used) describe the product as a whole, regardless of variant. Some product attributes are mandatory based on listing policies.\nUse this API to determine the mandatory and optional attributes before listing a product.\n**Note**: It must be a [leaf category](6509c89d0fcef602bf1acd9b) that corresponds to the category tree type specified in the `category_version` property.",
+    "method": "GET",
+    "endpoint": "/product/202309/categories/{category_id}/attributes",
+    "use_case": "Retrieve standard product and sales attributes for a specific category."
+  },
+  {
+    "title": "Get Brands",
+    "description": "Retrieve all available brands for your shop, including the built-in brands and any custom brands created using the [Create Custom Brands API](650a0926f1fd3102b91bbfb0). Pass the returned brand ID when creating or editing a product to associate the brand with the product.\n- To check if a brand is fully authorized for use in a specific product category, specify the **category ID**.\n- To obtain the full list of brands that your shop can potentially use and their authorization status, omit the category ID. We recommend that you specify the **brand name** to narrow down the list of brands returned.\n**Key concept**\nWhether you can select and display a brand depends on the brand's authorization status, the categories authorized for the brand, and whether the brand is classified as T1 (internationally renowned brands that require prior brand authorization).\n**- Brand selection rules**: You can only select the following types of brands during product creation/editing.\n   - Authorized brands which contain the desired category (`authorized_status=AUTHORIZED` and `brand_status=AVAILABLE`)\n   - Unauthorized non-T1 brands (`authorized_status=UNAUTHORIZED` and `is_t1_brand=false`) \n**- Brand display rules**: Note however that brands will only appear on the product display page if the brand is authorized (`authorized_status=AUTHORIZED`) and available in the desired category (`brand_status=AVAILABLE`). This means that you need to obtain brand authorization for unauthorized non-T1 brands before they can be displayed. Obtain brand authorization or add categories to an authorized brand through TikTok Shop Seller Center > Qualification Center > Brand qualification.\n**For Tokopedia sellers**: You can select and display any returned brand on Tokopedia regardless of these rules.",
+    "method": "GET",
+    "endpoint": "/product/202309/brands",
+    "use_case": "Retrieve all available brands for a shop and their authorization status."
+  },
+  {
+    "title": "Check Product Listing",
+    "description": "Identify any issues with your product properties in advance to ensure your product is ready for listing.\nEvery product must meet TikTok Shop requirements before it can be listed. Before listing, you can submit all relevant product information to this API to check whether a listing meets these requirements. You'll receive a list of issues to resolve before listing. This process helps reduce the risk of failure when creating products.\n**Note**: \n- The language used in the product content must align with the target market's language (e.g. don't use Chinese), otherwise the listing will fail or be rejected.",
+    "method": "POST",
+    "endpoint": "/product/202309/products/listing_check",
+    "use_case": "Identify potential issues with product properties before listing."
+  },
+  {
+    "title": "Upload Product Image",
+    "description": "Upload local images to TikTok Shop for use as product images, variant images, size charts, certification images and so on.\n\n**Note**: \n- All images used in TikTok Shop products must be uploaded through this API. You will not be able to use any image URLs that are not hosted by TikTok Shop.\n- You must store the response body to retrieve the ID or URL required to associate the image with a product during product creation or editing.",
+    "method": "POST",
+    "endpoint": "/product/202309/images/upload",
+    "use_case": "Upload local images to TikTok Shop for product listings."
+  },
+  {
+    "title": "Upload Product File",
+    "description": "Upload non-image files, such as PDF or video to TikTok Shop. \nUse this API when you need to add videos to your product to improve the shopping experience, or submit certifications or reports to meet TikTok Shop requirements for listing restricted products. \n**Note**: You must store the response body to retrieve the ID or URL required to associate the file with a product during product creation or editing.",
+    "method": "POST",
+    "endpoint": "/product/202309/files/upload",
+    "use_case": "Upload non-image files like videos or certifications to TikTok Shop."
+  },
+  {
+    "title": "Inventory Search",
+    "description": "Retrieve inventory information for multiple products or SKUs.\n**Note**: \n- Searches can be based on either product IDs or SKU IDs, not both at the same time.\n- Passing Product IDs returns the inventory information of all SKUs under the specified products.\n- Passing SKU IDs returns the inventory information for the specified SKUs.",
+    "method": "POST",
+    "endpoint": "/product/202309/inventory/search",
+    "use_case": "Retrieve inventory information for products or SKUs."
+  },
+  {
+    "title": "Get Image Translation Tasks",
+    "description": "Retrieves the image translation task status and translated images for one or more previously submitted images.\n**Note**: Please wait 5 minutes after [task creation](684f8b2d6e0b37048b2448b4) before calling this API, and retry at intervals over 10 seconds to avoid rate limiting.\nApplicable only for sellers that sell across EU.",
+    "method": "GET",
+    "endpoint": "/product/202506/images/translation_tasks",
+    "use_case": "Retrieve the status and translated images of image translation tasks."
+  },
+  {
+    "title": "Get Global Categories",
+    "description": "Retrieve all available product categories, regardless of market variations.\nProduct categories are updated frequently, so it's recommended to call the API in real time to ensure you are using the latest category data. Caching category data locally may result in using outdated information, leading to errors when creating global products.",
+    "method": "GET",
+    "endpoint": "/product/202309/global_categories",
+    "use_case": "Retrieve all available product categories."
+  },
+  {
+    "title": "Recommend Global Categories",
+    "description": "Retrieve the recommended categories for a candidate global product based on its title, description, and images.\nIf you are syncing product catalogs from an external system to TikTok Shop, use this API to facilitate product classification.\n**Note**: Double-byte characters (e.g. Chinese characters) are not supported in text fields such as descriptions and titles. If you include them, the API request will fail.",
+    "method": "POST",
+    "endpoint": "/product/202309/global_categories/recommend",
+    "use_case": "Retrieve recommended categories for a product based on its details."
+  },
+  {
+    "title": "Get Global Category Rules",
+    "description": "Retrieve the additional requirements (beyond mandatory product attributes) for listing a global product in a particular category, regardless of market variations. Requirements may include product certifications, size charts, dimensions and more.\nUse this API to determine the supporting information that you must prepare before listing a global product.\n**Note**: It must be a [leaf category](650a03f8f1fd3102b91b338a) that corresponds to the category tree type specified in the `category_version` property.",
+    "method": "GET",
+    "endpoint": "/product/202309/categories/{category_id}/global_rules",
+    "use_case": "Retrieve additional requirements for a global product category."
+  },
+  {
+    "title": "Get Global Attributes",
+    "description": "Retrieve the standard built-in product and sales attributes for listing a global product in a particular category, regardless of market variations.\nProducts on TikTok Shop are grouped into categories predefined by TikTok Shop, and each category is associated with a standard set of product attributes and sales attributes.\n- **Sales attributes** (e.g. size, color, length) define product variants and are optional if your product is straightforward and has no variants.\n- **Product attributes** (e.g. manufacturer, country of origin, materials used) describe the product as a whole, regardless of variant. Some product attributes are mandatory based on listing policies.\nUse this API to determine the mandatory and optional attributes before listing a global product.\n**Note**: It must be a [leaf category](650a03f8f1fd3102b91b338a) that corresponds to the category tree type specified in the `category_version` property.",
+    "method": "GET",
+    "endpoint": "/product/202309/categories/{category_id}/global_attributes",
+    "use_case": "Retrieve standard product and sales attributes for a global product category."
+  },
+  {
+    "title": "Get Global Product",
+    "description": "Retrieve all properties of a global product that is in the \"DRAFT\", \"UNPUBLISHED\", or \"PUBLISHED\" status, and the corresponding local product IDs in the published markets.",
+    "method": "GET",
+    "endpoint": "/product/202309/global_products/{global_product_id}",
+    "use_case": "Retrieve all properties of a specific global product."
+  },
+  {
+    "title": "Search Global Products",
+    "description": "Retrieve a list of global products that meet the specified conditions. \nThis API will only return the key product properties. You can pass a returned global product ID to the [Get Global Product API](https://partner.tiktokshop.com/docv2/page/6509e2b0bace3e02b7490c96) to obtain more details about the product.",
+    "method": "POST",
+    "endpoint": "/product/202312/global_products/search",
+    "use_case": "Retrieve a list of global products based on specified conditions."
+  },
+  {
+    "title": "Search Manufacturers",
+    "description": "Retrieve a list of manufacturers in the EU languages supported by TikTok Shop based on their IDs or keyword.\nWhen creating a product, pass the returned `manufacturer_id` to associate the product with the manufacturer.\nTarget seller: Local sellers operating in EU countries",
+    "method": "POST",
+    "endpoint": "/product/202501/compliance/manufacturers/search",
+    "use_case": "Retrieve a list of manufacturers based on IDs or keyword."
+  },
+  {
+    "title": "Search Responsible Persons",
+    "description": "Retrieve a list of responsible persons in the EU languages supported by TikTok Shop based on their ID or keywords.\nWhen creating a product, pass the returned `responsible_person_id` to associate the product with the responsible person.\nTarget seller: Local sellers operating in EU countries",
+    "method": "POST",
+    "endpoint": "/product/202501/compliance/responsible_persons/search",
+    "use_case": "Retrieve a list of responsible persons based on ID or keywords."
+  },
+  {
+    "title": "Get Global Listing Rules",
+    "description": "Retrieves the global listing rules for a local shop that belongs to a global seller. E.g. The supported listing methods or the inventory allocation rules. The rules differ by the markets they serve.\n**Note**: Applicable only for global sellers.",
+    "method": "GET",
+    "endpoint": "/product/202507/global_listing_rules",
+    "use_case": "Retrieve global listing rules for a local shop."
+  },
+  {
+    "title": "Get Global Replicated Products",
+    "description": "Retrieves the globally associated replicas in other markets if the product has been replicated through local replication.\nApplicable only for global sellers.",
+    "method": "GET",
+    "endpoint": "/product/202507/products/{product_id}/replicated_products",
+    "use_case": "Retrieve global replicated product information."
+  },
+  {
+    "title": "Get Activity",
+    "description": "Get the details of a product discount or flash deal promotion activity. For coupon activities, use [Get Coupon](6699dce0de15e502ed219e37).",
+    "method": "GET",
+    "endpoint": "/promotion/202309/activities/{activity_id}",
+    "use_case": "Retrieve details for a specific promotion activity."
+  },
+  {
+    "title": "Search Activities",
+    "description": "Get a list of product discount or flash deal promotion activities. For coupon activities, use [Search Coupons](https://partner.tiktokshop.com/docv2/page/6699dcdf115ebe02f841e4cd).",
+    "method": "POST",
+    "endpoint": "/promotion/202309/activities/search",
+    "use_case": "Retrieve a list of promotion activities."
+  },
+  {
+    "title": "Get Coupon",
+    "description": "Use this API to get the full details of a coupon matching the {coupon_id}.",
+    "method": "GET",
+    "endpoint": "/promotion/202406/coupons/{coupon_id}",
+    "use_case": "Retrieve detailed information for a specific coupon."
+  },
+  {
+    "title": "Search Coupons",
+    "description": "Use this API to get a list of coupons, narrowed down further based on search parameters. \nThe coupons are created in Seller Center or Seller App.\nFor further details of the specific coupon, use `GET Coupon`.",
+    "method": "POST",
+    "endpoint": "/promotion/202406/coupons/search",
+    "use_case": "Get a filtered list of coupons based on search parameters."
+  },
+  {
+    "title": "Get Order List",
+    "description": "Returns a list of orders created or updated during the timeframe indicated by the specified parameters. You can also apply a range of filtering criteria to narrow the list of orders returned, such as order status, delivery option type, and buyer user ID.",
+    "method": "POST",
+    "endpoint": "/order/202309/orders/search",
+    "use_case": "Retrieve a list of orders based on specified criteria and timeframe."
+  },
+  {
+    "title": "Get Price Detail",
+    "description": "Get the detailed pricing calculation information of an order or a line item, including vouchers, tax, etc.",
+    "method": "GET",
+    "endpoint": "/order/202407/orders/{order_id}/price_detail",
+    "use_case": "Retrieve detailed pricing calculation information for an order or line item."
+  },
+  {
+    "title": "Get External Order References",
+    "description": "If you have used the `Add External Order References` API to sync order information between your external order management system (OMS) and TikTok Shop, you may call this API to get information on the synced orders.",
+    "method": "GET",
+    "endpoint": "/order/202406/orders/{order_id}/external_orders",
+    "use_case": "Retrieve external order reference information for synced orders."
+  },
+  {
+    "title": "Search Order By External Order Reference",
+    "description": "If you have used the `Add External Order References` API to sync information from your external order management system (OMS) to corresponding orders in TikTok Shop, you may call this API to search for order information in TikTok Shop based on information in your OMS.",
+    "method": "POST",
+    "endpoint": "/order/202406/orders/external_order_search",
+    "use_case": "Search for TikTok Shop order information using external order references from an OMS."
+  },
+  {
+    "title": "Get Order Detail",
+    "description": "Get the detailed order information of an order, including important attributes such as order status, shipping addresses, payment details, price and tax info, and package information.",
+    "method": "GET",
+    "endpoint": "/order/202507/orders",
+    "use_case": "Retrieve detailed information about a specific order."
+  },
+  {
+    "title": "Get Order Split Attributes",
+    "description": "Use this API to check whether an order(s) can be split into multiple packages or not.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/orders/split_attributes",
+    "use_case": "Determine if an order can be split into multiple packages."
+  },
+  {
+    "title": "Get Eligible Shipping Service",
+    "description": "Use this API ( for US ) to query the list of available shipping services when specifying packages' size or weight. The shipping fee and delivery time is an estimate only and is based on the package dimensions and weight you provided. Options listed may differ if you change the package attributes at the time of shipping.",
+    "method": "POST",
+    "endpoint": "/fulfillment/202309/orders/{order_id}/shipping_services/query",
+    "use_case": "Query available shipping services and estimated fees/delivery times for a package."
+  },
+  {
+    "title": "Search Package",
+    "description": "Retrieve package IDs based on specified conditions. Package creation time and information update time are the common querying conditions.",
+    "method": "POST",
+    "endpoint": "/fulfillment/202309/packages/search",
+    "use_case": "Retrieve package IDs based on specified search conditions."
+  },
+  {
+    "title": "Search Combinable Packages",
+    "description": "Use this API to query orders eligible for combined shipping.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/combinable_packages/search",
+    "use_case": "Retrieve orders eligible for combined shipping."
+  },
+  {
+    "title": "Get Package Handover Time Slots",
+    "description": "Use this API to retrieve the time slots available for pickup, drop-off, or van collection for the seller's specified package by using package ID.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/packages/{package_id}/handover_time_slots",
+    "use_case": "Retrieve available handover time slots for a package."
+  },
+  {
+    "title": "Get Package Shipping Document",
+    "description": "For orders shipped by TikTok Shop, this API retrieves the URL of shipping documents (shipping label and packing slip) for a package specified by the package ID. This API is only applicable to \"TikTok Shipping\" orders. To obtain the shipping documents URL via this API, first call \"Ship Package\" to ship the corresponding package.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/packages/{package_id}/shipping_documents",
+    "use_case": "Retrieve URLs for shipping documents (label, packing slip) for a package."
+  },
+  {
+    "title": "Get Package Detail",
+    "description": "Returns information about a package, including handover time slot, tracking number, and shipping provider information.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/packages/{package_id}",
+    "use_case": "Retrieve detailed information about a specific package."
+  },
+  {
+    "title": "Get Tracking",
+    "description": "This API can use the order number to obtain the corresponding logistics tracking information.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202309/orders/{order_id}/tracking",
+    "use_case": "Retrieve logistics tracking information for an order."
+  },
+  {
+    "title": "TTS Tracking Validation",
+    "description": "Enables a seller or warehouse to validate whether a tracking number is covered by TikTok Shipping (TTS) or Collection by TikTok (CBT). \n\nAvailable only in the **US Market**.",
+    "method": "GET",
+    "endpoint": "/fulfillment/202508/tts_tracking_validation",
+    "use_case": "Validate if a tracking number is covered by TikTok Shipping or Collection by TikTok."
+  },
+  {
+    "title": "Get FBT Merchant Onboarded Regions",
+    "description": "This API verifies whether a seller is registered as a Fulfillment by TikTok (FBT) merchant. If the seller is onboarded, the API returns the regions where the merchant is authorized to operate under the FBT system.",
+    "method": "GET",
+    "endpoint": "/fbt/202409/merchants/onboarded_regions",
+    "use_case": "Verify FBT merchant registration and retrieve authorized regions."
+  },
+  {
+    "title": "Get FBT Warehouse List",
+    "description": "This API is used to retrieve all Fulfilled by TikTok warehouse information including the warehouse name, warehouse address information, etc. The IDs of subscribed warehouses can be used to query inventory-related information.",
+    "method": "GET",
+    "endpoint": "/fbt/202408/warehouses",
+    "use_case": "Retrieve a list of Fulfilled by TikTok warehouse information."
+  },
+  {
+    "title": "Get Inbound Order",
+    "description": "This API is used to retrieve the inbound order details including the planned inbound detail, actual inbound detail and inbound status, etc.",
+    "method": "GET",
+    "endpoint": "/fbt/202409/inbound_orders",
+    "use_case": "Retrieve details of an inbound order."
+  },
+  {
+    "title": "Search FBT Inventory",
+    "description": "This API is used to retrieve detailed inventory information for goods and matched SKUs, including sellable inventory, reserved inventory, unsellable inventory, and in-transit inventory at the warehouse level.",
+    "method": "POST",
+    "endpoint": "/fbt/202408/inventory/search",
+    "use_case": "Retrieve detailed inventory information for goods and SKUs."
+  },
+  {
+    "title": "Search FBT Inventory Record",
+    "description": "This API is used to retrieve detailed inventory change records for goods at the warehouse level.",
+    "method": "POST",
+    "endpoint": "/fbt/202410/inventory_records/search",
+    "use_case": "Retrieve detailed inventory change records for goods."
+  },
+  {
+    "title": "Search Goods Info",
+    "description": "This API is used to retrieve a list of goods belonging to the merchant that meet the specified conditions. It returns detailed information about the goods, including their IDs, names, and other attributes, such as the goods-SKU relationship, dimensions, and weight as verified by the warehouse.",
+    "method": "POST",
+    "endpoint": "/fbt/202409/goods/search",
+    "use_case": "Retrieve detailed information about a merchant's goods."
+  },
+  {
+    "title": "Get Warehouse List",
+    "description": "This API retrieves all warehouse information associated with the seller. Warehouse information includes name, status, address, and other details.",
+    "method": "GET",
+    "endpoint": "/logistics/202309/warehouses",
+    "use_case": "Retrieve all warehouse information associated with the seller."
+  },
+  {
+    "title": "Get Global Seller Warehouse",
+    "description": "This API retrieves all global warehouse information associated with the seller. Warehouse information includes global warehouse ID, warehouse name, and warehouse ownership.",
+    "method": "GET",
+    "endpoint": "/logistics/202309/global_warehouses",
+    "use_case": "Retrieve all global warehouse information associated with the seller."
+  },
+  {
+    "title": "Get Warehouse Delivery Options",
+    "description": "This API is used to obtain a list of delivery options available through the seller's designated warehouse.",
+    "method": "GET",
+    "endpoint": "/logistics/202309/warehouses/{warehouse_id}/delivery_options",
+    "use_case": "Obtain a list of delivery options for a designated warehouse."
+  },
+  {
+    "title": "Get Shipping Providers",
+    "description": "This API is used to obtain the shipping provider corresponding to the specified delivery option",
+    "method": "GET",
+    "endpoint": "/logistics/202309/delivery_options/{delivery_option_id}/shipping_providers",
+    "use_case": "Obtain the shipping provider for a specified delivery option."
+  },
+  {
+    "title": "Search Cancellations",
+    "description": "Use this API to search and retrieve one or more order cancellations.",
+    "method": "POST",
+    "endpoint": "/return_refund/202309/cancellations/search",
+    "use_case": "Search and retrieve order cancellation records."
+  },
+  {
+    "title": "Calculate Refund",
+    "description": "Use this API to check order refundable amounts.",
+    "method": "POST",
+    "endpoint": "/return_refund/202309/refunds/calculate",
+    "use_case": "Calculate and retrieve order refundable amounts."
+  },
+  {
+    "title": "Finance API overview",
+    "description": "",
+    "method": "",
+    "endpoint": "",
+    "use_case": "Provide an overview of Finance API capabilities."
+  },
+  {
+    "title": "Get Statements",
+    "description": "Retrieves the statements generated for a shop and the key statement information based on a specified date range or their payment status. Use this API to get an overview of your daily statements over a range of time, or to find out which statements have been paid or not. For the detailed transactions, refer to [Get Statement Transactions](650a6749defece02be67da87) or [Get Order Statement Transactions](650a6734defece02be67d724).\nApplicable for all regions' sellers. Only data after 2023-07-01 is available.",
+    "method": "GET",
+    "endpoint": "/finance/202309/statements",
+    "use_case": "Retrieve shop statements and their key information."
+  },
+  {
+    "title": "Get Payments",
+    "description": "**This API is currently unavailable to SEA markets.**\nRetrieves records of automated payments for a shop based on a specified date range.\nUse the returned list to verify and reconcile payments with the transactions in the seller's bank account.",
+    "method": "GET",
+    "endpoint": "/finance/202309/payments",
+    "use_case": "Retrieve records of automated payments for a shop."
+  },
+  {
+    "title": "Get Withdrawals",
+    "description": "Get the list of the withdrawal records (when Seller's withdraw money from TikTokShop) based on the specified date range.",
+    "method": "GET",
+    "endpoint": "/finance/202309/withdrawals",
+    "use_case": "Retrieve the list of seller withdrawal records."
+  },
+  {
+    "title": "Get Transactions by Order",
+    "description": "Retrieves the SKU-level details of an order transaction. This covers transactions related to sales, fees, commissions, shipping, taxes, and refunds.\nApplicable for all regions' sellers. Only data after 2023-07-01 is available (Please note that for US cross-border sellers, data before 2025-04-30 is unavailable).",
+    "method": "GET",
+    "endpoint": "/finance/202501/orders/{order_id}/statement_transactions",
+    "use_case": "Retrieve SKU-level details of an order transaction."
+  },
+  {
+    "title": "Get Transactions by Statement",
+    "description": "Retrieves the details of a statement, including the transactions, which can be a standard order transaction, an adjustment transaction, or a reserve-related transaction. For the SKU-level details of an order transaction, refer to [Get Transactions by Order](650a6734defece02be67d724).\nApplicable for all regions' sellers. Only data after 2023-07-01 is available (Please note that for US cross-border sellers, data before 2025-04-30 is unavailable).",
+    "method": "GET",
+    "endpoint": "/finance/202501/statements/{statement_id}/statement_transactions",
+    "use_case": "Retrieve details of a statement including its transactions."
+  },
+  {
+    "title": "Get Unsettled Transactions",
+    "description": "This API allows the partner to retrieve a list of unsettled transactions (incl. Orders & Adjustments) generated by a seller, returning the detailed fee breakdown for a list of order ID and adjustment ID. \nFor now, this API only returns transactions which were created after 2025.01.01. Once one transaction is settled, which won't be returned by this API anymore, please get from Get Statement Transaction API. \n**Pay attention to that all data returned through this API is an estimated amount which subject to change before settlement and can only used for seller's reference, final settlement amount per each transaction can only provided through statement related API.",
+    "method": "GET",
+    "endpoint": "/finance/202507/orders/unsettled",
+    "use_case": "Retrieve estimated unsettled transaction details and fee breakdown for a seller."
+  },
+  {
+    "title": "Get Shop Performance",
+    "description": "Returns performance metrics at shop/seller level.",
+    "method": "GET",
+    "endpoint": "/analytics/202405/shop/performance",
+    "use_case": "Get overall performance metrics at the shop/seller level."
+  },
+  {
+    "title": "Get Shop Product Performance List",
+    "description": "Returns a list of product performance metrics.",
+    "method": "GET",
+    "endpoint": "/analytics/202405/shop_products/performance",
+    "use_case": "Get a list of performance metrics for products in a shop."
+  },
+  {
+    "title": "Get Shop Product Performance",
+    "description": "Returns performance metrics for a product.",
+    "method": "GET",
+    "endpoint": "/analytics/202405/shop_products/{product_id}/performance",
+    "use_case": "Get performance metrics for a specific product."
+  },
+  {
+    "title": "Get Shop SKU Performance List",
+    "description": "Returns a list of SKU performance metrics.",
+    "method": "GET",
+    "endpoint": "/analytics/202406/shop_skus/performance",
+    "use_case": "Get a list of performance metrics for SKUs in a shop."
+  },
+  {
+    "title": "Get Shop SKU Performance",
+    "description": "Return SKU performance metrics.",
+    "method": "GET",
+    "endpoint": "/analytics/202406/shop_skus/{sku_id}/performance",
+    "use_case": "Get performance metrics for a specific SKU."
+  },
+  {
+    "title": "Get Shop Video Performance Overview",
+    "description": "Returns overall performance metrics for all videos under a shop.",
+    "method": "GET",
+    "endpoint": "/analytics/202409/shop_videos/overview_performance",
+    "use_case": "Get an overview of performance metrics for all videos under a shop."
+  },
+  {
+    "title": "Get Shop Video Performance List",
+    "description": "Returns a list of videos and associated metrics for a shop.",
+    "method": "GET",
+    "endpoint": "/analytics/202409/shop_videos/performance",
+    "use_case": "Get a list of videos and their associated performance metrics for a shop."
+  },
+  {
+    "title": "Get Shop Video Performance Details",
+    "description": "Returns detailed performance metrics for a (requested) video.",
+    "method": "GET",
+    "endpoint": "/analytics/202409/shop_videos/{video_id}/performance",
+    "use_case": "Get detailed performance metrics for a specific video."
+  },
+  {
+    "title": "Get Shop Video Product Performance List",
+    "description": "Returns performance metrics for a list of products promoted in a given video.",
+    "method": "GET",
+    "endpoint": "/analytics/202409/shop_videos/{video_id}/products/performance",
+    "use_case": "Get performance metrics for products promoted in a specific video."
+  },
+  {
+    "title": "Get Shop LIVE Performance Overview",
+    "description": "Returns overall performance metrics for all LIVE stream sessions under a certain shop.",
+    "method": "GET",
+    "endpoint": "/analytics/202508/shop_lives/overview_performance",
+    "use_case": "Retrieve aggregated performance metrics for shop's live streams."
+  },
+  {
+    "title": "Get Shop LIVE Performance List",
+    "description": "Returns a list of LIVE stream sessions and associated metrics for a shop.",
+    "method": "GET",
+    "endpoint": "/analytics/202508/shop_lives/performance",
+    "use_case": "Retrieve a detailed list of live stream sessions and their performance metrics."
+  },
+  {
+    "title": "Get Conversations",
+    "description": "Use this API to retrieve a shop's conversations with buyers.",
+    "method": "GET",
+    "endpoint": "/customer_service/202309/conversations",
+    "use_case": "Retrieve a list of conversations between a shop and its buyers."
+  },
+  {
+    "title": "Get Conversation Messages",
+    "description": "Use this API to get all messages in a conversation between a buyer and a shop. \nCalling this API does not mark the messages as read. You are suggested to call [Read Message](650a59f7c16ffe02b8e8db3f) to mark the messages read.",
+    "method": "GET",
+    "endpoint": "/customer_service/202309/conversations/{conversation_id}/messages",
+    "use_case": "Retrieve all messages within a specific conversation."
+  },
+  {
+    "title": "Get Agent Settings",
+    "description": "This API is used to get agent settings. This API allows the agent to see whether the agent can accept chats from buyers. This API is a read-only endpoint. There will be no side effects, and can be retried safely. Note:  1. The current API version can only get settings on behalf of the shop, or the owner account holder on Seller Center. The owner in this case is acting as the customer service agent. In the future, we plan to make this API available to subaccount holders (who has customer service role) in Seller Center.  2. This API is to allow the agent to get his/her own setting.  See more information in API overview",
+    "method": "GET",
+    "endpoint": "/customer_service/202309/agents/settings",
+    "use_case": "Retrieve the current customer service agent settings."
+  },
+  {
+    "title": "Get Customer Service Performance",
+    "description": "Get the average customer service performance of a shop for a selected time period",
+    "method": "GET",
+    "endpoint": "/customer_service/202407/performance",
+    "use_case": "Retrieve average customer service performance metrics for a shop."
+  },
+  {
+    "title": "Get Message Templates",
+    "description": "Get a library of customer engagement message templates predefined by TikTok Shop, which you can use directly in your customer engagement communications.",
+    "method": "GET",
+    "endpoint": "/customer_engagement/202412/message_templates",
+    "use_case": "Retrieve a library of predefined customer engagement message templates."
+  },
+  {
+    "title": "Get Task Performances",
+    "description": "Retrieve detailed performance metrics for a customer engagement task, including message reads, order conversions, and other key engagement statistics.",
+    "method": "POST",
+    "endpoint": "/customer_engagement/202412/performances",
+    "use_case": "Retrieve detailed performance metrics for a customer engagement task."
+  },
+  {
+    "title": "Get Feature Permissions",
+    "description": "Retrieve information about customer engagement features that the shop has permission to use.",
+    "method": "GET",
+    "endpoint": "/customer_engagement/202502/permissions",
+    "use_case": "Retrieve information about customer engagement feature permissions for a shop."
+  },
+  {
+    "title": "Get Showcase Products",
+    "description": "This API lists the products in the creator's showcase, paginated by specified page size and iterated through pages by page token for up to 2000 products in the showcase. This API is generally used when a creator would like to view the products in the showcase.  The platform will return the product details in the showcase, as well as the products in the livebag if the creator is live streaming.",
+    "method": "GET",
+    "endpoint": "/affiliate_creator/202405/showcases/products",
+    "use_case": "View products in a creator's showcase."
+  },
+  {
+    "title": "Creator Search Open Collaboration Product",
+    "description": "This API is used to search the information of products with open collaboration by category, commission rate, and keywords. It will return all products on the TikTok Shop Affiliate Product Marketplace that are in an open collaboration.\nCreators can only search for open collaboration within the regions they are registered in the affiliate.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202405/open_collaborations/products/search",
+    "use_case": "Search for products with open collaboration."
+  },
+  {
+    "title": "Search Creator Target Collaborations",
+    "description": "This API is used to search for creator's target collaborations and the products within these target collaborations.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202405/target_collaborations/search",
+    "use_case": "Search for creator's target collaborations and products."
+  },
+  {
+    "title": "Creator Search Sample Application Fulfillments",
+    "description": "You, the creator, can use this API to query the fulfillment status for the received sample applications.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202409/sample_applications/fulfillments/search",
+    "use_case": "Query fulfillment status for received sample applications."
+  },
+  {
+    "title": "Search Creator Affiliate Orders",
+    "description": "Search Creator Affiliate Orders\nThis API allows the partner to retrieve a list of affiliate orders generated by a creator, returning the order ID and the product ID. Using this, the partner can track their affiliate-conversions on behalf of a creator, using the order ID.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202410/orders/search",
+    "use_case": "Retrieve a list of affiliate orders generated by a creator."
+  },
+  {
+    "title": "Get Creator Sample Application Detail",
+    "description": "Get the sample detail of specified sample application.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202412/sample_applications/single_query",
+    "use_case": "Get details of a specified sample application."
+  },
+  {
+    "title": "Get Creator Applicable Sample Label",
+    "description": "Check if a creator can apply for a sample of a specific product.",
+    "method": "GET",
+    "endpoint": "/affiliate_creator/202412/samples/labels",
+    "use_case": "Check if a creator can apply for a product sample."
+  },
+  {
+    "title": "Search Creator Sample Applications",
+    "description": "Get sample application list of creator.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202412/sample_applications/search",
+    "use_case": "Retrieve a list of sample applications by a creator."
+  },
+  {
+    "title": "Creator Search Affiliate Trace Orders",
+    "description": "This API allows the partner to retrieve a list of affiliate orders generated by a creator, returning the order ID and the product ID. Using this, the partner can track their affiliate-conversions on behalf of a creator, using the order ID.",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202505/orders/trace/search",
+    "use_case": "Retrieve a list of affiliate orders for tracking purposes."
+  },
+  {
+    "title": "Get Creator Profile",
+    "description": "This API gets the creator profile information.",
+    "method": "GET",
+    "endpoint": "/affiliate_creator/202508/profiles",
+    "use_case": "Retrieve creator profile information."
+  },
+  {
+    "title": "Get Open Collaboration Product List By Product Ids",
+    "description": "Get Product OpenCollaboration Product List By Product Ids",
+    "method": "POST",
+    "endpoint": "/affiliate_creator/202509/open_collaborations/products",
+    "use_case": "Retrieve a list of open collaboration products by their IDs."
+  },
+  {
+    "title": "Affiliate Partner API overview",
+    "description": "",
+    "method": "",
+    "endpoint": "",
+    "use_case": "Get an overview of Affiliate Partner APIs (assumed)."
+  },
+  {
+    "title": "Get Affiliate Partner Campaign Detail",
+    "description": "This API offers the ability to get affiliate campaign details.",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202405/campaigns/{campaign_id}",
+    "use_case": "To retrieve specific details about an affiliate campaign."
+  },
+  {
+    "title": "Get Affiliate Partner Campaign List",
+    "description": "This API offers the ability to list campaigns created by the Affiliate Partner.",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202405/campaigns",
+    "use_case": "To retrieve a list of all campaigns created by an affiliate partner."
+  },
+  {
+    "title": "Get Affiliate Partner Campaign Product List",
+    "description": "This API offers the ability to list products submitted by sellers in an Affiliate Partner campaign.",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202405/campaigns/{campaign_id}/products",
+    "use_case": "To retrieve a list of products submitted by sellers for a specific affiliate campaign."
+  },
+  {
+    "title": "Search Tap Affiliate Orders",
+    "description": "TAP can use this API to retrieve a list of affiliate orders and track the affiliate conversions.",
+    "method": "POST",
+    "endpoint": "/affiliate_partner/202411/orders/search",
+    "use_case": "To search and retrieve a list of affiliate orders and track associated conversions."
+  },
+  {
+    "title": "Get Affiliate Campaign Creator Fulfillment Status List",
+    "description": "This API offers the ability to get the product of the campaign fulfillment status for creators who added partner campaign products to their showcase. For details of a specified product involved in an affiliated campaign, use Get Affiliate Campaign Creator Fulfillment Status Info gateway.",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202501/campaigns/{campaign_id}/products/performance",
+    "use_case": "To retrieve a list of fulfillment statuses for campaign products added to creators' showcases."
+  },
+  {
+    "title": "Get Affiliate Campaign Creator Fulfillment Status Info",
+    "description": "This API offers the ability to get the product fulfillment status for creators who added partner campaign products to their showcase",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202508/campaigns/{campaign_id}/products/{product_id}/performance",
+    "use_case": "To retrieve the fulfillment status for a specific campaign product added to a creator's showcase."
+  },
+  {
+    "title": "Get Affiliate Campaign Creator Product Content Statistics",
+    "description": "Get statistics on creator's marketing video content",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202508/campaigns/{campaign_id}/products/{product_id}/creator/{creator_temp_id}/content/statistics",
+    "use_case": "To retrieve statistics related to a creator's marketing video content for a campaign product."
+  },
+  {
+    "title": "Get Affiliate Campaign Creator Product Sample Status",
+    "description": "Get progress on creator's sample status",
+    "method": "GET",
+    "endpoint": "/affiliate_partner/202508/campaigns/{campaign_id}/products/{product_id}/creator/{creator_temp_id}/content/statistics/sample/status",
+    "use_case": "Retrieve progress on a creator's product sample status."
+  },
+  {
+    "title": "Seller Search Affiliate Open Collaboration Product",
+    "description": "This API is used to search the information of products with open collaboration by category, commission rate, and keywords. It will return all products on the TikTok Shop Affiliate Product Marketplace that are in an open collaboration.\nSellers can only search for open collaboration within the regions they are registered to sell in.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202405/open_collaborations/products/search",
+    "use_case": "Search and retrieve information about products available for open collaboration."
+  },
+  {
+    "title": "Search Seller Affiliate Orders",
+    "description": "This API allows the partner to retrieve a list of affiliate orders (orders which are affiliate-commission eligible) generated by a seller, returning the order ID and the product ID. Using this, the partner can track their affiliate-conversions on behalf of a seller, using the order ID.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202410/orders/search",
+    "use_case": "Retrieve a list of affiliate-commission eligible orders for a seller."
+  },
+  {
+    "title": "Seller Search Sample Applications Fulfillments",
+    "description": "You, the seller, can use this API to get the fulfillment status of the specific sample application and whether the fulfillment resulted in orders. This allows Sellers to track the current progress or analyze the results of their sample distribution program.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202409/sample_applications/{application_id}/fulfillments/search",
+    "use_case": "Retrieve the fulfillment status and results of sample applications."
+  },
+  {
+    "title": "Get Open Collaboration Sample Rules",
+    "description": "Use this API to get the status and the details of the sample rules for products under an open collaboration. With this API, you can efficiently review the sample distribution criteria for products within the open collaboration context.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202410/open_collaborations/sample_rules",
+    "use_case": "Retrieve the status and details of sample rules for open collaboration products."
+  },
+  {
+    "title": "Get Open Collaboration Settings",
+    "description": "Get the open collaboration settings, including auto add settings.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202409/open_collaboration_settings",
+    "use_case": "Retrieve current open collaboration settings."
+  },
+  {
+    "title": "Search Open Collaboration",
+    "description": "Retrieve all open collaboration information from merchants, including commission rate, add to showcase and post content creator count.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202412/open_collaborations/search",
+    "use_case": "Search and retrieve open collaboration details."
+  },
+  {
+    "title": "Get Message in the Conversation",
+    "description": "Get chat history in one conversation.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202412/conversation/{conversation_id}/messages",
+    "use_case": "Retrieve chat history for a specific conversation."
+  },
+  {
+    "title": "Get Conversation List",
+    "description": "Get User's Conversation list.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202412/conversations",
+    "use_case": "Retrieve a list of user's conversations."
+  },
+  {
+    "title": "Get Latest Unread Messages",
+    "description": "Get the unread messages from the last minute.\nYou are recommended to use the Webhook, New Message Listener, for the message notification.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202412/conversations/messages/list/newest",
+    "use_case": "Retrieve recently received unread messages."
+  },
+  {
+    "title": "Seller Search Creator on Marketplace",
+    "description": "This API is used by Sellers to search for Creators in the Creator Marketplace. Sellers can search based on filters such as GMV, keywords, and Creator follower demographics. All the data returned is for the last 30 days.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202508/marketplace_creators/search",
+    "use_case": "Search for creators in the Creator Marketplace."
+  },
+  {
+    "title": "Get Marketplace Creator Performance",
+    "description": "Get the Creator Affiliate's Marketplace information and performance metrics in the last 30 days.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202508/marketplace_creators/{creator_user_id}",
+    "use_case": "Retrieve creator affiliate performance metrics."
+  },
+  {
+    "title": "Search Target Collaborations",
+    "description": "This API is used by Seller to search for all existing target collaborations. Sellers can search based on filters such as Invitation name, Invitation ID, Product name, Product ID and Creator name.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202508/target_collaborations/search",
+    "use_case": "Search and retrieve details of existing target collaborations."
+  },
+  {
+    "title": "Query Target Collaboration Detail",
+    "description": "This API is used by Sellers to get target collaboration information.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202508/target_collaborations/{target_collaboration_id}",
+    "use_case": "Retrieve detailed information about a specific target collaboration."
+  },
+  {
+    "title": "Seller Search Sample Applications",
+    "description": "This API is provided for sellers to query sample applications based on various criteria such as products, creators, or application statuses. By using this API, sellers can retrieve detailed information about sample application records, including the creator's information and the specifics of each application.",
+    "method": "POST",
+    "endpoint": "/affiliate_seller/202508/sample_applications/search",
+    "use_case": "Search and retrieve detailed information about sample application records."
+  },
+  {
+    "title": "Get Open Collaboration Creator Content Detail",
+    "description": "This API allows the seller to get the creator content details of specified open collaboration.",
+    "method": "GET",
+    "endpoint": "/affiliate_seller/202508/open_collaborations/creator_content_details",
+    "use_case": "Retrieve creator content details for a specified open collaboration."
+  },
+  {
+    "title": "Confirm Package Shipment",
+    "description": "This API enables a warehouse service provider to send package shipment information for an order. Only warehouse service providers who have been certified by the platform have permission to access this interface.",
+    "method": "POST",
+    "endpoint": "/supply_chain/202309/packages/sync",
+    "use_case": "Allows warehouse service provider to send package shipment information to the platform."
+  }
+]

@@ -540,7 +540,7 @@
     "use_case": ""
   },
   {
-    "title": "Get Global Replicated Products ",
+    "title": "Get Global Replicated Products",
     "description": "Retrieves the globally associated replicas in other markets if the product has been replicated through local replication.\nApplicable only for global sellers.",
     "scope": "seller.product.basic",
     "method": "GET",

@@ -44,18 +44,18 @@ async def auth_callback_handler(app_key: str = None, code: str = None) -> APIRes
         }
         response = requests.get("https://auth.tiktok-shops.com/api/v2/token/get", params=params)
         response.raise_for_status()
-        data: AuthTokenResponse = response.json().get("data")
+        data = AuthTokenResponse(**response.json().get("data"))
         print(f"Received auth tokens: {response.json()}")
         if (data is None):
             return APIResponse(code=500, message=response.json().get("message", "Failed to get auth tokens"))
-        await prisma.tiktokshoptokens.create(data=data)
+        await prisma.tokens.create(data=data.model_dump())
         response = await shop_authorize_handler(data.access_token)
         response.raise_for_status()
-        data: ShopDataResponse = response.json().get("data")
+        data = ShopDataResponse(**response.json().get("data"))
         if (data is None):
             return APIResponse(code=500, message=response.json().get("message", "Failed to get shop data"))
         print(f"Authorized shop data: {data}")
-        await prisma.tiktokshopdata.create(data=data)
+        await prisma.shop_data.create(data=data.model_dump())
     except Exception as e:
         print(f"Error in auth_callback_handler: {e}")
         return APIResponse(code=500, message="Internal server error")
@@ -64,7 +64,7 @@ async def auth_callback_handler(app_key: str = None, code: str = None) -> APIRes
 async def refresh_token_handler():
     refresh_token = None
     try:
-        tmp = await prisma.tiktokshoptokens.find_unique(
+        tmp = await prisma.tokens.find_unique(
             where={"customer_id": 1}
         )
         refresh_token = tmp.refresh_token
@@ -89,7 +89,7 @@ async def refresh_token_handler():
         data = AuthTokenResponse(**(response.json().get("data")))
         if (data is None):
             return APIResponse(code=500, message=response.json().get("message", "Failed to refresh tokens"))
-        await prisma.tiktokshoptokens.update(
+        await prisma.tokens.update(
             where={"customer_id": 1},
             data=data.model_dump()
         )

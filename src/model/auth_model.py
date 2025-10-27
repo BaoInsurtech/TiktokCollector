@@ -7,7 +7,9 @@ class AuthTokenResponse(BaseModel):
     refresh_token_expire_in: int
 
 class ShopDataResponse(BaseModel):
-    shop_id: int
-    shop_name: str
-    shop_code: str
-    shop_cipher: str
+    id: int
+    name: str
+    region: str
+    seller_type: str
+    cipher: str
+    code: str

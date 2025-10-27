@@ -49,7 +49,23 @@ async def auth_callback_handler(app_key: str = None, code: str = None) -> APIRes
         if (data is None):
             return APIResponse(code=500, message=response.json().get("message", "Failed to get auth tokens"))
         await prisma.tokens.create(data=data.model_dump())
-        response = await shop_authorize_handler(data.access_token)
+    except Exception as e:
+        print(f"Error in auth_callback_handler: {e}")
+        return APIResponse(code=500, message="Internal server error")
+
+async def shop_data_handler():
+    try:
+        tmp = await prisma.tokens.find_unique(
+            where={"customer_id": 1}
+        )
+        access_token = tmp.access_token
+    except Exception as e:
+        print(f"Error fetching access token: {e}")
+        return APIResponse(code=500, message="Internal server error")
+    if access_token is None:
+        return APIResponse(code=400, message="No access token found")
+    try:
+        response = await shop_authorize_handler(access_token)
         response.raise_for_status()
         data = ShopDataResponse(**response.json().get("data"))
         if (data is None):
@@ -57,7 +73,7 @@ async def auth_callback_handler(app_key: str = None, code: str = None) -> APIRes
         print(f"Authorized shop data: {data}")
         await prisma.shop_data.create(data=data.model_dump())
     except Exception as e:
-        print(f"Error in auth_callback_handler: {e}")
+        print(f"Error in shop_data_handler: {e}")
         return APIResponse(code=500, message="Internal server error")
     return APIResponse(code=200, message="Authorization successful")
 

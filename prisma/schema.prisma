@@ -26,13 +26,15 @@ model tokens {
 
 model shop_data {
   customer_id     Int
-  shop_id         String
-  shop_name       String
-  shop_code       String
-  shop_cipher     String
+  id              String
+  name            String
+  code            String
+  cipher          String
+  region          String
+  seller_type     String
 
   created         DateTime  @default(now())
   modified        DateTime  @updatedAt
   token           tokens   @relation(fields: [customer_id], references: [customer_id])
-  @@id([customer_id, shop_id])
+  @@id([customer_id, id])
 }

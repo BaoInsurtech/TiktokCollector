@@ -3,6 +3,11 @@ GET /auth/callback?app_key=6hc64lc67hmhk&code=ROW_eeVTNAAAAABNR7jrhaDi16ywPteFLG
 Host: localhost:8000
 Content-Type: application/json
 
+### TikTok Shop Data
+GET /auth/shop-data HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+
 ### Refresh Token
 GET /auth/refresh-token HTTP/1.1
 Host: localhost:8000

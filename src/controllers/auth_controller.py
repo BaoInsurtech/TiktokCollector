@@ -67,11 +67,16 @@ async def shop_data_handler():
     try:
         response = await shop_authorize_handler(access_token)
         response.raise_for_status()
-        data = ShopDataResponse(**response.json().get("data"))
+        tmp = response.json().get("data").get("shops")
+        print(f"Authorized shop data response: {tmp[0]}")
+        data = ShopDataResponse(**(tmp[0]))
         if (data is None):
             return APIResponse(code=500, message=response.json().get("message", "Failed to get shop data"))
         print(f"Authorized shop data: {data}")
-        await prisma.shop_data.create(data=data.model_dump())
+        shop_dict = data.model_dump()
+        shop_dict["id"] = str(shop_dict["id"])
+        shop_dict["token"] = {"connect": {"customer_id": 1}}
+        await prisma.shop_data.create(data=shop_dict)
     except Exception as e:
         print(f"Error in shop_data_handler: {e}")
         return APIResponse(code=500, message="Internal server error")

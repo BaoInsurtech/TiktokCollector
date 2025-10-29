@@ -11,10 +11,6 @@ TIKTOK_API_BASE = "https://open-api.tiktokglobalshop.com"
 APP_KEY = os.getenv("APP_KEY", "")
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY", "")
 
-print("APP_KEY:", APP_KEY)
-print("APP_SECRET_KEY:", APP_SECRET_KEY)
-print("DATABASE_URL:", os.getenv("DATABASE_URL"))
-
 async def get_seller_permisions(access_token: str,
                          shop_cipher: str,
                          pageSize: int | None = 20,

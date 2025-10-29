@@ -11,9 +11,6 @@ TIKTOK_API_BASE = "https://open-api.tiktokglobalshop.com"
 APP_KEY = os.getenv("APP_KEY", "")
 APP_SECRET_KEY = os.getenv("APP_SECRET_KEY", "")
 
-print("APP_KEY:", APP_KEY)
-print("APP_SECRET_KEY:", APP_SECRET_KEY)
-print("DATABASE_URL:", os.getenv("DATABASE_URL"))
 
 async def get_categories(access_token: str,
                          shop_cipher: str,
@@ -144,7 +141,7 @@ async def get_brands(access_token: str,
     
 async def get_product(access_token: str,
                       product_id: str,
-                        #  shop_cipher: str,
+                         shop_cipher: str,
                         #  pageSize: int | None = 20,
                          body: dict | None = None,
                          params: dict | None = None
@@ -152,12 +149,12 @@ async def get_product(access_token: str,
     """
     Gọi API lấy danh sách đơn hàng từ TikTok Shop
     """
-    api_path = "/product/202309/products/{product_id}"
+    api_path = f"/product/202309/products/{product_id}"
     timestamp = int(time.time())
     qs = {
         "app_key": APP_KEY,
         "timestamp": str(timestamp),
-        # "shop_cipher": shop_cipher or "",
+        "shop_cipher": shop_cipher or "",
         # "page_size": str(pageSize),
     }
     if params:
@@ -183,7 +180,7 @@ async def get_product(access_token: str,
 
     async with httpx.AsyncClient(timeout=30.0) as client:
         resp = await client.get(url, headers=headers, params=qs)
-        
+        print("URL requested: ", resp.request.url)
         # ✅ Parse JSON từ httpx.Response
         try:
             body = resp.json()
